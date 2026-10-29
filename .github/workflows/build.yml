@@ -1,7 +1,10 @@
 name: Build my town
 
-# Builds the screensaver from town.json each time town.json changes. The zip
-# and the preview images are attached to the workflow run as "riverside-town".
+# Builds the screensaver from town.json each time town.json changes. Two
+# downloads are attached to the workflow run:
+# - riverside-town-roku: the screensaver. GitHub puts each download in a zip
+#   file, and this one can be uploaded to the Roku as it is.
+# - riverside-town-previews: preview images of the town.
 on:
   push:
     paths: ["town.json", ".github/workflows/build.yml"]
@@ -17,5 +20,10 @@ jobs:
           config: town.json
       - uses: actions/upload-artifact@v4
         with:
-          name: riverside-town
-          path: out/
+          name: riverside-town-roku
+          path: out/roku/
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v4
+        with:
+          name: riverside-town-previews
+          path: out/previews/
