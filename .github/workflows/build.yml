@@ -1,0 +1,21 @@
+name: Build my town
+
+# Builds the screensaver from town.json each time town.json changes. The zip
+# and the preview images are attached to the workflow run as "riverside-town".
+on:
+  push:
+    paths: ["town.json", ".github/workflows/build.yml"]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: rorpage/riverside-town@v1
+        with:
+          config: town.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: riverside-town
+          path: out/
