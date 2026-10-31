@@ -4,6 +4,7 @@
   "location": { "zip": "46204", "country": "US" },
   "units": { "temperature": "F", "clock": "12h" },
   "hemisphere": "north",
+  "drive_on": "right",
   "buildings": [
     "101",
     { "type": "bakery", "name": "Bakery" },
