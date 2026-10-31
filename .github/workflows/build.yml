@@ -5,10 +5,17 @@ name: Build my town
 # - riverside-town-roku: the screensaver. GitHub puts each download in a zip
 #   file, and this one can be uploaded to the Roku as it is.
 # - riverside-town-previews: preview images of the town.
+# After the downloads are attached, the downloads from earlier runs are
+# deleted, so only the newest ones count against the storage space of the
+# GitHub account.
 on:
   push:
     paths: ["town.json", ".github/workflows/build.yml"]
   workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: write
 
 jobs:
   build:
@@ -27,3 +34,14 @@ jobs:
         with:
           name: riverside-town-previews
           path: out/previews/
+      - name: Delete the downloads from earlier runs
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            const artifacts = await github.paginate(github.rest.actions.listArtifactsForRepo, { owner, repo, per_page: 100 });
+            for (const artifact of artifacts) {
+              if (artifact.workflow_run && artifact.workflow_run.id === context.runId) continue;
+              core.info(`Deleting ${artifact.name} from run ${artifact.workflow_run ? artifact.workflow_run.id : "unknown"}`);
+              await github.rest.actions.deleteArtifact({ owner, repo, artifact_id: artifact.id });
+            }

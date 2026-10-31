@@ -11,6 +11,8 @@ This repository builds a [Riverside Town](https://github.com/rorpage/riverside-t
    - **riverside-town-roku**: the screensaver. It downloads as `riverside-town-roku.zip`. Do not unzip it; upload it to the Roku as it is.
    - **riverside-town-previews**: pictures of your town.
 
+   Only the newest run keeps its downloads. Each build deletes the downloads from earlier runs, so they do not use up the storage space of your GitHub account. If a build fails, the downloads from the last build that passed are kept.
+
 If something in `town.json` is wrong, the run fails, and its log names the field and says what is wrong.
 
 ## Install it on a Roku

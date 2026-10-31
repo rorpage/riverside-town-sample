@@ -6,7 +6,7 @@ Notes for AI coding agents working on this repository. Read this before making c
 
 This is the public template for Riverside Town, a Roku screensaver. People click "Use this template" to make their own repository, edit `town.json`, and download their screensaver from the "Build my town" workflow. The code that draws the town is in rorpage/riverside-town; this repository has no code of its own.
 
-- `.github/workflows/build.yml` ("Build my town") runs on each push that changes `town.json` or the workflow. It builds the town with the `rorpage/riverside-town@v1` Action and attaches two downloads to the run: `riverside-town-roku` (the screensaver; it is uploaded to the Roku as it is, without unzipping) and `riverside-town-previews` (preview images).
+- `.github/workflows/build.yml` ("Build my town") runs on each push that changes `town.json` or the workflow. It builds the town with the `rorpage/riverside-town@v1` Action and attaches two downloads to the run: `riverside-town-roku` (the screensaver; it is uploaded to the Roku as it is, without unzipping) and `riverside-town-previews` (preview images). After the uploads, it deletes the downloads from earlier runs, so only the newest ones use storage space in the GitHub account. That step needs the `actions: write` permission; if the build fails, it does not run, and the last downloads that passed are kept.
 - `README.md` is the guide for people who use the template. Keep it short, and link to the "town.json reference" in the README of rorpage/riverside-town for the details.
 - `LICENSE` is The Unlicense, like rorpage/riverside-town.
 
