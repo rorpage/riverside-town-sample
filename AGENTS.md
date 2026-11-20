@@ -15,7 +15,7 @@ This is the public template for Riverside Town, a Roku screensaver. People click
 - Keep every file plain ASCII. Do not use em dashes or the Unicode ellipsis character.
 - Use plain, literal language. Do not use idioms, figures of speech, or clever phrasing.
 - `town.json` must be the same as the sample `town.json` in rorpage/riverside-town, except that this one uses `"location": { "zip": "46204", "country": "US" }` instead of lat and lon. When that file changes, copy it here and change the location and the `$schema` line (here it is the raw.githubusercontent.com URL of `tools/riverside/town.schema.json`).
-- The sample town is generic on purpose: no real businesses, people, or references.
+- The sample town is generic on purpose: no real businesses, people, or references. The one exception is `birthdays`, which uses Back to the Future characters on dates from the movies, as the owner asked.
 - Changes go straight to `main`; there are no pull requests in this repository.
 
 ## Using a new feature
